@@ -5,14 +5,14 @@
 
 // POSTデータ確認
 if (
-  !isset($_POST['id']) || $_POST['id']==='' ||
+  !isset($_POST['mail']) || $_POST['mail']==='' ||
   !isset($_POST['password']) || $_POST['password']===''
 ) {
   exit('ParamError');
 }
 
 session_start();
-$id=$_POST['id'];
+$mail=$_POST['mail'];
 
 // DB接続
 // 各種項目設定
@@ -29,11 +29,11 @@ try {
 }
 
 // SQL呼び出し
-$sql = 'SELECT * FROM  login_table WHERE id = :id';
+$sql = 'SELECT * FROM  login_table WHERE mail = :mail';
 $stmt = $pdo->prepare($sql);
 
 // バインド変数を設定
-$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+$stmt->bindValue(':mail', $mail, PDO::PARAM_STR);
 
 // SQL実行（実行に失敗すると `sql error ...` が出力される）
 try {
@@ -48,12 +48,12 @@ $member = $stmt->fetch();
 //指定したハッシュがパスワードにマッチしているかチェック
 if (password_verify($_POST['password'], $member['password'])) {
     //DBのユーザー情報をセッションに保存
-    $_SESSION['id'] = $member['id'];
+    $_SESSION['mail'] = $member['mail'];
     $msg = 'ログインしました。';
-    $link = '<a href="welcome.php">ホーム</a>';
+    $link = '<a href="60-welcome.php">ホーム</a>';
 } else {
     $msg = 'メールアドレスもしくはパスワードが間違っています。';
-    $link = '<a href="login_input.php">戻る</a>';
+    $link = '<a href="20-login_input.php">戻る</a>';
 }
 ?>
 

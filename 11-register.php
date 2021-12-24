@@ -5,14 +5,14 @@
 
 // POSTデータ確認
 if (
-  !isset($_POST['id']) || $_POST['id']==='' ||
+  !isset($_POST['mail']) || $_POST['mail']==='' ||
   !isset($_POST['password']) || $_POST['password']===''
 ) {
   exit('ParamError');
 }
 
 //フォームからの値をそれぞれ変数に代入
-$id = $_POST['id'];
+$mail = $_POST['mail'];
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 $dbn ='mysql:dbname=ydev01_04_sleep;charset=utf8mb4;port=3306;host=localhost';
 $user = 'root';
@@ -50,12 +50,12 @@ try {
 //}
 
 // SQL作成&実行
-$sql = 'INSERT INTO login_table (number, id, password) VALUES (NULL, :id, :password)';
+$sql = 'INSERT INTO login_table (id, mail, password, created_at, updated_at,is_deleted) VALUES (NULL, :mail, :password, now(), now(),FALSE)';
 
 $stmt = $pdo->prepare($sql);
 
 // バインド変数を設定
-$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+$stmt->bindValue(':mail', $mail, PDO::PARAM_STR);
 $stmt->bindValue(':password', $password, PDO::PARAM_STR);
 
 // SQL実行（実行に失敗すると `sql error ...` が出力される）
@@ -66,7 +66,7 @@ try {
   exit();
 }
 
-header('Location:login_input.php');
+header('Location:20-login_input.php');
 exit();
 
 

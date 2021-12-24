@@ -1,13 +1,13 @@
 <?php
 session_start();
-$id = $_SESSION['id'];
+$mail = $_SESSION['mail'];
 
-if (isset($_SESSION['id'])) {//ログインしているとき
-    $msg = 'こんにちは' . htmlspecialchars($id, \ENT_QUOTES, 'UTF-8') . 'さん';
-    $link = '<a href="logout.php">ログアウト</a>';
+if (isset($_SESSION['mail'])) {//ログインしているとき
+    $msg = 'こんにちは' . htmlspecialchars($mail, \ENT_QUOTES, 'UTF-8') . 'さん';
+    $link = '<a href="90-logout.php">ログアウト</a>';
 } else {//ログインしていない時
     $msg = 'ログインしていません';
-    $link = '<a href="login_input.php">ログイン</a>';
+    $link = '<a href="20-login_input.php">ログイン</a>';
 } 
 ?>
 

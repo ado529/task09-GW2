@@ -9,14 +9,14 @@
 
 <body>
   <h1>sleeping together</h1>
-  <form action="register.php" method="POST">
+  <form action="11-register.php" method="POST">
     <fieldset>
       <legend>[新規会員登録]</legend>
       <div>
-        ID: <input type="text" name="id" minlength="4" placeholder="4文字以上" required>
+        mail: <input type="email" name="mail" required>
       </div>
       <div>
-        PASSWORD: <input type="password" name="password" minlength="6" placeholder="6文字以上" required>
+        password: <input type="password" name="password" minlength="6" placeholder="6文字以上" required>
       </div>
       <div>
         <input type="submit" value="新規登録">
@@ -24,7 +24,7 @@
     </fieldset>
   </form>
 
-  <p>すでに登録済の方は <a href="login_input.php">こちら</a></p>
+  <p>すでに登録済の方は <a href="20-login_input.php">こちら</a></p>
 
 </body>
 

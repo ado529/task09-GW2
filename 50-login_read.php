@@ -40,8 +40,11 @@ $output = "";
 foreach ($result as $record) {
   $output .= "
     <tr>
-      <td>{$record["id"]}</td>
+      <td>{$record["mail"]}</td>
       <td>{$record["password"]}</td>
+      <td>{$record["created_at"]}</td>
+      <td>{$record["updated_at"]}</td>
+      <td>{$record["is_deleted"]}</td>
     </tr>
   ";
 }
@@ -61,16 +64,19 @@ foreach ($result as $record) {
 <body>
   <fieldset>
     <legend>管理画面(id,password一覧)）</legend>
-    <a href="login_input.php">入力画面</a>
+    <a href="20-login_input.php">入力画面</a>
     <table>
       <thead>
         <tr>
-          <th>id</th>
+          <th>mail</th>
           <th>password</th>
+          <th>created_at</th>
+          <th>updated_at</th>
+          <th>is_deleted</th>
         </tr>
       </thead>
       <tbody>
-        <!-- ここに<tr><td>deadline</td><td>todo</td><tr>の形でデータが入る -->
+        <!-- ここに<tr><td>mail</td><td>password</td>・・・<tr>の形でデータが入る -->
         <?= $output ?>
       </tbody>
     </table>
